@@ -19,25 +19,27 @@ OBSTACLES = [
     (30,   20,   2,   8),
 ]
 
-# Target position in meters (center point)
-TARGET = (35, 25)
+TARGET = (25,30)
 
+class RectangleWorld:
 
-class World:
     def __init__(self):
         self.obstacles = OBSTACLES
-        self.target    = TARGET
+        self.target = TARGET
 
-    def draw(self, surface):
-        for (x, y, w, h) in self.obstacles:
-            rect = pygame.Rect(
-                x * config.SCALE,
-                y * config.SCALE,
-                w * config.SCALE,
-                h * config.SCALE
-            )
+    
+    def draw(self, surface: pygame.Surface) -> None:
+        
+        #draw rectangle obstacles
+        for (x,y,w,h) in self.obstacles:
+            rect = pygame.Rect(x * config.SCALE,
+                               y * config.SCALE,
+                               h * config.SCALE,
+                               w * config.SCALE)
+            
             pygame.draw.rect(surface, config.COLOR_OBSTACLE, rect)
 
-        tx = int(self.target[0] * config.SCALE)
-        ty = int(self.target[1] * config.SCALE)
-        pygame.draw.circle(surface, config.COLOR_TARGET, (tx, ty), 6)
+            #draw the target
+            tx = int(self.target[0] * config.SCALE)
+            ty = int(self.target[1] * config.SCALE)
+            pygame.draw.circle(surface, config.COLOR_TARGET, (tx, ty), 6)
