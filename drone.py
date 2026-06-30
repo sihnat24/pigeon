@@ -37,8 +37,8 @@ class Drone2D:
 
     def apply_strafe(self, direction, dt):
         head = math.radians(self.heading)
-        ax = direction * (config.DRONE_ACCEL * math.sin(head))
-        ay = direction * (config.DRONE_ACCEL * math.cos(head))
+        ax = direction * (config.DRONE_ACCEL * math.cos(head))
+        ay = direction * (config.DRONE_ACCEL * math.sin(head))
         self.vx += dt * ax
         self.vy += dt * ay
 

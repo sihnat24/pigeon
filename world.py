@@ -19,7 +19,7 @@ OBSTACLES = [
     (30,   20,   2,   8),
 ]
 
-TARGET = (25,30)
+TARGET = (25,28)
 
 class RectangleWorld:
 
@@ -34,8 +34,8 @@ class RectangleWorld:
         for (x,y,w,h) in self.obstacles:
             rect = pygame.Rect(x * config.SCALE,
                                y * config.SCALE,
-                               h * config.SCALE,
-                               w * config.SCALE)
+                               w * config.SCALE,
+                               h * config.SCALE)
             
             pygame.draw.rect(surface, config.COLOR_OBSTACLE, rect)
 

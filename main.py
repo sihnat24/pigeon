@@ -14,9 +14,8 @@ def main():
     py_world = world.RectangleWorld()
     player = drone.Drone2D()
 
-    #init prev pos vars
-    prev_x = player.x
-    prev_y = player.y 
+
+   
     running = True
     while running:
         dt = clock.tick(config.FPS) / 1000
@@ -35,26 +34,27 @@ def main():
         if keys[pygame.K_s]:
             player.apply_thrust(-1,dt)
         if keys[pygame.K_a]:
-            player.apply_strafe(1,dt)
-        if keys[pygame.K_d]:
             player.apply_strafe(-1,dt)
+        if keys[pygame.K_d]:
+            player.apply_strafe(1,dt)
         if keys[pygame.K_q]:
-            player.rotate(1,dt)
-        if keys[pygame.K_e]:
             player.rotate(-1,dt)
+        if keys[pygame.K_e]:
+            player.rotate(1,dt)
         
         #check obstacles for collision
+        
+        
+        #update position 
+        prev_x, prev_y = player.x, player.y #store prev position
+        player.update(dt)
+        
         for (x,y,w,h) in world.OBSTACLES:
             if (player.x > x and player.x < x+ w) and (player.y > y and player.y < y+h): #if collision, set v to 0 and reset pos
                 player.vx = 0
                 player.vy = 0
                 player.x = prev_x
                 player.y = prev_y
-        
-        #update position 
-        prev_x, prev_y = player.x, player.y #store prev position
-        player.update(dt)
-        
         #draw
         surface.fill(config.COLOR_BG) #clear the screen
         py_world.draw(surface) #draw world and player
