@@ -54,6 +54,6 @@ models/
 checkpoints/
 *.zip
 
-# Claude Code
+# Claude Code :0
 .claude/
 CLAUDE.md
