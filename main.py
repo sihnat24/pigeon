@@ -2,6 +2,7 @@ import config
 import drone
 import world
 import pygame
+import sensor
 
 def main():
     
@@ -55,10 +56,15 @@ def main():
                 player.vy = 0
                 player.x = prev_x
                 player.y = prev_y
+
+
         #draw
         surface.fill(config.COLOR_BG) #clear the screen
         py_world.draw(surface) #draw world and player
-        player.draw(surface) 
+        player.draw(surface)
+
+        rays = sensor.cast_rays(player.x, player.y, player.heading, world.OBSTACLES)
+        sensor.draw_pov(surface, rays)
 
         pygame.display.flip() #push to screen
 

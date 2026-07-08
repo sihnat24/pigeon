@@ -57,7 +57,18 @@ class Drone2D:
         end_y = int(py - l * math.cos(head))
         pygame.draw.line(surface, config.COLOR_DRONE, (px,py), (end_x, end_y), 2)
 
+        #draw vision cone
+        fov_half = config.FOV_ANGLE / 2
+        points = [(px, py)]
+        for i in range(31):  # 30 steps across the arc
+            angle_deg = self.heading - fov_half + (config.FOV_ANGLE * i /30) 
+            angle_rad = math.radians(angle_deg)
+            cone_x = px + int(config.FOV_RANGE * config.SCALE * math.sin(angle_rad))
+            cone_y = py - int(config.FOV_RANGE * config.SCALE * math.cos(angle_rad))
+            points.append((cone_x, cone_y))
 
-        
+        pygame.draw.polygon(surface, config.COLOR_FOV, points, 1)  # 1 =
+
+                            
 
         
