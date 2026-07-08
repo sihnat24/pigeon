@@ -75,7 +75,7 @@ def _ray_rect_intersect(rx, ry, dx, dy, ox, oy, ow, oh):
 
     return None
 
-
+#gabagoo, who is reading this i say
 def draw_pov(surface, rays):
     """
     Draw the drone's-eye POV panel on the right half of the window.
